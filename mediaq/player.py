@@ -88,3 +88,8 @@ class MediaPlayer:
                 "track": track,
                 "timestamp": datetime.now().strftime("%H:%M:%S")
             })
+
+    def get_playlist_state(self):
+        """Retorna a playlist e a faixa atual para o CLI exibir."""
+        # Retorna uma tupla com a lista e a faixa que está no cursor
+        return self.playlist, self.playlist.current()
