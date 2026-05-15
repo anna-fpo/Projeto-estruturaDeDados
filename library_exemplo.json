@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "titulo": "Águas de Março",
+    "artista": "Elis Regina",
+    "duracao": 212,
+    "rating": 3,
+    "data_adicao": "2026-01-01"
+  },
+
+ {
+    "id": 2,
+    "titulo": "Lover",
+    "artista": "Taylor Swift",
+    "duracao": 221,
+    "rating": 4,
+    "data_adicao": "2026-02-02"
+  },
+
+  {
+    "id": 3,
+    "titulo": "Human",
+    "artista": "The Killers",
+    "duracao": 246,
+    "rating": 5,
+    "data_adicao": "2026-04-05"
+  },
+
+  {
+    "id": 4,
+    "titulo": "Sangue Latino",
+    "artista": "Ney Matogrosso",
+    "duracao": 175,
+    "rating": 4,
+    "data_adicao": "2026-04-07"
+  }
+]
