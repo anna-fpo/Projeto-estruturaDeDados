@@ -47,20 +47,17 @@ class MediaPlayer:
             self.playlist.add(track)
 
     def play(self):
-
+        """Retorna a faixa atual apontada pelo cursor e adiciona ao histórico."""
         track = self.playlist.current()
 
         if track:
-
-            print(
-                f'>>> Tocando: "{track.titulo}" — '
-                f'{track.artista} ({track.format_duration()})'
-            )
-
+            # Adiciona ao histórico (deque de tamanho 20) com o timestamp atual
             self.history.appendleft({
-                "track": track,
+                "id": track.id,
                 "timestamp": datetime.now().strftime("%H:%M:%S")
             })
+            return track
+        return None
 
     def enqueue(self, track_id):
 
@@ -93,3 +90,25 @@ class MediaPlayer:
         """Retorna a playlist e a faixa atual para o CLI exibir."""
         # Retorna uma tupla com a lista e a faixa que está no cursor
         return self.playlist, self.playlist.current()
+
+    def add_to_playlist(self, track_id):
+        """Busca uma música na biblioteca e adiciona à playlist atual."""
+        track = self.library.get(track_id)
+        if track:
+            self.playlist.add(track)
+            return track
+        return None
+
+    def remove_from_playlist(self, position):
+        """Remove a música na posição informada (base 1)."""
+        return self.playlist.remove_at(position)
+
+    def get_playlist_state(self):
+        """Retorna a playlist e a faixa atual para o CLI exibir."""
+        return self.playlist, self.playlist.current()
+
+    def new_playlist(self, nome):
+        """Reseta a playlist atual criando uma nova instância de DoublyLinkedList."""
+        self.playlist = DoublyLinkedList()
+        self.playlist_name = nome  # Adicione self.playlist_name = "" no seu __init__
+        return nome

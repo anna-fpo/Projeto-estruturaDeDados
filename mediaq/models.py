@@ -10,7 +10,7 @@ class Track:
         self.data_adicao = data_adicao
 
     def format_duration(self):
-        minutos = self.duracao
+        minutos = self.duracao // 60
         segundos = self.duracao % 60
         return f"{minutos}:{segundos:02}"
 
