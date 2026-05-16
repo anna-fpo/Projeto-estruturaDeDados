@@ -78,6 +78,44 @@ def run():
             else:
                 print("Erro: Nenhuma música na playlist atual ou o cursor está vazio.")
 
+        # 7.5 AVANÇAR (NEXT)
+        elif entrada == "next":
+            track = player.next_track()
+            if track:
+                print(f'>>> Tocando: "{track.titulo}" — {track.artista} ({track.format_duration()})')
+            else:
+                print("Fim da playlist ou nenhuma mídia disponível para reprodução.")
+
+        # 7.6 ADICIONAR À FILA (ENQUEUE)
+        elif entrada.startswith("enqueue"):
+            try:
+                track_id = int(partes[1])
+                track = player.enqueue(track_id)
+                if track:
+                    print(f"Adicionado à fila Up Next: {track.titulo}")
+                else:
+                    print(f"Erro: Música com ID {track_id} não encontrada na biblioteca.")
+            except (IndexError, ValueError):
+                print("Erro: Use o formato 'enqueue <id_da_musica>'")
+
+        # 7.7 MOSTRAR FILA (QUEUE SHOW)
+        elif entrada == "queue show":
+            fila = player.get_queue()
+            if len(fila) == 0:
+                print("A fila Up Next está vazia.")
+            else:
+                print("--- Fila Up Next ---")
+                for i, track in enumerate(fila, start=1):
+                    print(f"{i}. {track.titulo} — {track.artista} ({track.format_duration()})")
+
+        # 7.5.2 RETROCEDER (PREV)
+        elif entrada == "prev":
+            track = player.prev_track()
+            if track:
+                print(f'>>> Tocando: "{track.titulo}" — {track.artista} ({track.format_duration()})')
+            else:
+                print("Início da playlist alcançado ou nenhuma mídia disponível para reprodução.")
+
         # 8. COMANDO DESCONHECIDO (Sempre por último!)
         else:
             print(f"Erro: Comando desconhecido '{entrada}'.")
